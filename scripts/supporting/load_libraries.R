@@ -14,5 +14,5 @@ load_package <- function(x) {
 
 #  Then try/install packages...
 
-packages <- c("tidyverse",'officer','readxl')
+packages <- c("tidyverse",'officer','readxl','rvg','mschart')
 load_package(packages)
