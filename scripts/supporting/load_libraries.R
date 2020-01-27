@@ -15,5 +15,5 @@
 #  Then try/install packages...
 
 packages <- c("dplyr",'ggplot2','tibble','purrr','officer','readxl',
-              'rvg','mschart','extrafontdb','flextable','stringr')
+              'rvg','mschart','extrafontdb','flextable','stringr','forcats')
 lapply(packages, require, character.only = TRUE)
