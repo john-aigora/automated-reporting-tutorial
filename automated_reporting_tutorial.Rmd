@@ -5,13 +5,21 @@ date: "9/23/2020"
 output: html_document
 ---
 
-```{r}
-library(tidyverse)
-library(officer)
-library(flextable)
+```{r include=FALSE}
+# Load/install libraries
+source(file.path("scripts", "supporting", "load_libraries.R"))
+
+# Load functions
+source(file.path("scripts", "supporting", "load_functions.R"))
+
+# Load constants
+source(file.path("scripts", "supporting", "load_constants.R"))
+
+# Load data objects
+source(file.path("scripts", "supporting", "load_data.R"))
 ```
 
-# PowerPint Slide Master
+# PowerPoint Slide Master
 
 ## Importing the Template 
 
@@ -38,12 +46,13 @@ pptx_obj %>% print(target = "output/first_example.pptx")
 We can not load the themes of Office *ex nihilo* returns error
 ```{r themes1}
 pptx_obj <- read_pptx() # new empty file
-pptx_obj <- pptx_obj %>% 
-  add_slide(layout = "Title and Content", master = "Integral")
+pptx_obj <- try(pptx_obj %>% 
+  add_slide(layout = "Title and Content", master = "Integral"), silent = T)
+pptx_obj
 ```
 
 However, we can save an empty pptx with the desired theme and use it as a template
-```{r themes1}
+```{r themes1.1}
 pptx_obj <- read_pptx(file.path("input","templates","integral.pptx"))
 layout_summary(pptx_obj)
 ```
@@ -240,6 +249,8 @@ pptx_obj <- read_pptx() %>%
 ```
 
 ## Introduction to flextable
+
+
 ```{r 4.2 flextable1}
 base_table <- tutorial_data[["Age"]] %>%
   table() %>%
